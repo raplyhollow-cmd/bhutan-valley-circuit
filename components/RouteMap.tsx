@@ -132,7 +132,7 @@ export default function RouteMap() {
           <span className="font-mono text-sm tracking-[0.3em] text-bhutan-maroon">
             THE JOURNEY
           </span>
-          <h2 className="font-display mt-4 text-4xl font-bold md:text-6xl text-bhutan-charcoal">
+          <h2 className="font-display mt-4 text-4xl font-bold md:text-6xl text-bhutan-maroon">
             Valley Circuit Route
           </h2>
         </div>
@@ -159,11 +159,11 @@ export default function RouteMap() {
           ))}
         </div>
 
-        {/* Altitude Profile */}
+        {/* Altitude Profile - Based on actual route altitudes */}
         <div className="mt-12">
           <h3 className="font-display mb-4 text-xl font-semibold text-bhutan-charcoal">Altitude Profile</h3>
-          <div className="relative h-28 w-full overflow-hidden rounded-2xl bg-white/50 shadow-inner">
-            <svg viewBox="0 0 600 100" className="h-full w-full">
+          <div className="relative h-32 w-full overflow-hidden rounded-2xl bg-white/50 shadow-inner">
+            <svg viewBox="0 0 600 120" className="h-full w-full">
               <defs>
                 <linearGradient id="altitudeGradient2" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" stopColor="#C41E3A" />
@@ -171,21 +171,33 @@ export default function RouteMap() {
                   <stop offset="100%" stopColor="#2D5A3D" />
                 </linearGradient>
                 <linearGradient id="areaGradient2" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="rgba(228, 176, 27, 0.4)" />
-                  <stop offset="100%" stopColor="rgba(228, 176, 27, 0)" />
+                  <stop offset="0%" stopColor="rgba(196, 30, 58, 0.4)" />
+                  <stop offset="100%" stopColor="rgba(196, 30, 58, 0)" />
                 </linearGradient>
               </defs>
+              {/* Altitudes: 293, 2200, 1350, 2900, 2350, 2200, 293 */}
+              {/* Mapped to Y coordinates (inverted - higher altitude = lower Y) */}
               <path
-                d="M0,70 L100,35 L200,50 L300,25 L400,30 L500,70 L500,100 L0,100 Z"
+                d="M0,100 L83,30 L166,60 L250,20 L333,35 L416,30 L500,100 L500,120 L0,120 Z"
                 fill="url(#areaGradient2)"
               />
               <path
-                d="M0,70 L100,35 L200,50 L300,25 L400,30 L500,70"
+                d="M0,100 L83,30 L166,60 L250,20 L333,35 L416,30 L500,100"
                 stroke="url(#altitudeGradient2)"
                 strokeWidth="3"
                 fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 className="animate-pulse-slow"
               />
+              {/* Altitude labels */}
+              <text x="0" y="115" className="text-[8px] fill-bhutan-charcoal/70 font-mono">293m</text>
+              <text x="83" y="25" className="text-[8px] fill-bhutan-maroon font-mono font-bold">2200m</text>
+              <text x="166" y="55" className="text-[8px] fill-bhutan-charcoal/70 font-mono">1350m</text>
+              <text x="250" y="15" className="text-[8px] fill-bhutan-maroon font-mono font-bold">2900m</text>
+              <text x="333" y="30" className="text-[8px] fill-bhutan-charcoal/70 font-mono">2350m</text>
+              <text x="416" y="25" className="text-[8px] fill-bhutan-charcoal/70 font-mono">2200m</text>
+              <text x="500" y="115" className="text-[8px] fill-bhutan-charcoal/70 font-mono">293m</text>
             </svg>
           </div>
         </div>

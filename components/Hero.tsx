@@ -24,7 +24,7 @@ export default function Hero() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const words = ['RIDE', 'THE', 'ROOF', 'OF', 'THE', 'WORLD'];
+  const words = ['GROSS', 'NATIONAL', 'HAPPINESS'];
 
   return (
     <section ref={containerRef} className="relative h-screen w-full overflow-hidden">
@@ -34,7 +34,7 @@ export default function Hero() {
           src="/assets/Punakha_Dzong1.jpg"
           alt="Punakha Dzong - Bhutan"
           fill
-          className="object-cover"
+          className="object-cover opacity-60"
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black" />

@@ -44,7 +44,7 @@ Thank you!`
         <div className="max-w-4xl mx-auto text-center">
           <span className="font-mono text-sm tracking-[0.3em] text-bhutan-mustard">LIMITED SPOTS - 2026 SEASON</span>
           <h2 className="font-display mt-4 text-4xl font-bold md:text-6xl mb-6 text-white">
-            Ready to Ride the Roof of the World?
+            Ready to Ride the Last Shangri-La?
           </h2>
           <p className="text-lg text-white/90 mb-12 max-w-2xl mx-auto">
             Join the exclusive Bhutan Valley Circuit expedition. Limited to 12 riders per batch for an intimate, premium experience.
