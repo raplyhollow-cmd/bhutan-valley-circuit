@@ -58,16 +58,7 @@ Thank you!`
               className="inline-flex items-center justify-center gap-3 rounded-full bg-green-500 px-8 py-4 font-display font-semibold text-black hover:bg-green-400 transition-all hover:scale-105 shadow-lg"
             >
               <MessageCircle className="w-5 h-5" />
-              WhatsApp Bhutan
-            </a>
-            <a
-              href="https://wa.me/919876543210"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-3 rounded-full bg-green-500 px-8 py-4 font-display font-semibold text-black hover:bg-green-400 transition-all hover:scale-105 shadow-lg"
-            >
-              <MessageCircle className="w-5 h-5" />
-              WhatsApp India
+              WhatsApp Us
             </a>
             <button
               onClick={handleEmailInquiry}
@@ -131,7 +122,6 @@ Thank you!`
           <div className="mt-8 text-white/60 text-sm">
             <p>Contact us:</p>
             <p className="font-mono">🇧🇹 Bhutan: +975 1764 9720</p>
-            <p className="font-mono">🇮🇳 India: +91 98765 43210</p>
             <p className="font-mono">✉️ bsptours.treks@gmail.com</p>
           </div>
         </div>
