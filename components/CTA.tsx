@@ -9,11 +9,11 @@ export default function CTA() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const whatsappMsg = encodeURIComponent(
-      'Hi Silverpine! I am interested in the Bhutan Valley Circuit expedition.
+      `Hi Silverpine! I am interested in the Bhutan Valley Circuit expedition.
 
-Name: ' + formData.name + '
-Phone: ' + formData.phone + '
-Email: ' + formData.email
+Name: ${formData.name}
+Phone: ${formData.phone}
+Email: ${formData.email}`
     );
     window.open('https://wa.me/97517649720?text=' + whatsappMsg, '_blank');
   };
@@ -21,17 +21,17 @@ Email: ' + formData.email
   const handleEmailInquiry = () => {
     const subject = encodeURIComponent('Bhutan Valley Circuit Expedition Inquiry');
     const body = encodeURIComponent(
-      'Hi Silverpine Tours,
+      `Hi Silverpine Tours,
 
 I am interested in the Bhutan Valley Circuit expedition (8 Days | 7 Nights).
 
-Name: ' + (formData.name || '[Your Name]') + '
-Phone: ' + (formData.phone || '[Your Phone]') + '
-Email: ' + (formData.email || '[Your Email]') + '
+Name: ${formData.name || '[Your Name]'}
+Phone: ${formData.phone || '[Your Phone]'}
+Email: ${formData.email || '[Your Email]'}
 
 Please share the detailed itinerary and pricing.
 
-Thank you!'
+Thank you!`
     );
     window.location.href = 'mailto:bsptours.treks@gmail.com?subject=' + subject + '&body=' + body;
   };
