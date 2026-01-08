@@ -31,8 +31,8 @@ export default function Hero() {
       {/* Background Image with Parallax */}
       <div className="absolute inset-0">
         <Image
-          src="/assets/bikingbhutan - Copy.jpg"
-          alt="Biking in Bhutan"
+          src="/assets/Punakha_Dzong1.jpg"
+          alt="Punakha Dzong - Bhutan"
           fill
           className="object-cover"
           priority

@@ -46,11 +46,14 @@ export default function RouteMap() {
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
 
+      // Increased padding for longer names like "Phuntsholing"
+      const padding = width < 500 ? 70 : 100;
+
       // Draw winding road
       ctx.beginPath();
       const points = stops.length;
       for (let i = 0; i < points; i++) {
-        const x = 80 + (width - 160) / (points - 1) * i;
+        const x = padding + (width - padding * 2) / (points - 1) * i;
         const y = height / 2 + Math.sin(i * 0.8) * 50;
         if (i === 0) ctx.moveTo(x, y);
         else ctx.lineTo(x, y);
@@ -60,7 +63,7 @@ export default function RouteMap() {
 
       // Draw stops
       stops.forEach((stop, i) => {
-        const x = 80 + (width - 160) / (stops.length - 1) * i;
+        const x = padding + (width - padding * 2) / (stops.length - 1) * i;
         const y = height / 2 + Math.sin(i * 0.8) * 50;
 
         // Draw outer circle
@@ -79,14 +82,16 @@ export default function RouteMap() {
         ctx.textBaseline = 'middle';
         ctx.fillText(String(i + 1), x, y);
 
-        // Draw label below
+        // Draw label below - responsive font size
         ctx.fillStyle = '#1a1a1a';
-        ctx.font = '11px Space Grotesk';
+        const labelFontSize = width < 500 ? '9px' : '11px';
+        ctx.font = labelFontSize + ' Space Grotesk';
         ctx.fillText(stop.name, x, y + 28);
 
         // Draw altitude above
         ctx.fillStyle = '#C41E3A';
-        ctx.font = 'bold 10px Space Grotesk';
+        const altFontSize = width < 500 ? '8px' : '10px';
+        ctx.font = 'bold ' + altFontSize + ' Space Grotesk';
         ctx.fillText(stop.alt + 'm', x, y - 22);
       });
     };
@@ -104,8 +109,20 @@ export default function RouteMap() {
       draw();
     };
 
+    const handleResize = () => {
+      const newRect = canvas.getBoundingClientRect();
+      canvas.width = newRect.width * dpr;
+      canvas.height = newRect.height * dpr;
+      ctx.scale(dpr, dpr);
+      draw();
+    };
+
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
   }, [visibleSection]);
 
   return (
