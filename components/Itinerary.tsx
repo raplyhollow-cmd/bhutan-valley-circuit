@@ -7,11 +7,11 @@ import { ChevronLeft, ChevronRight, MapPin, Mountain, Clock, ArrowRight } from '
 const days = [
   { day: 1, title: 'Arrival & Permits', location: 'Phuntsholing', alt: 293, distance: null, time: null, image: '/assets/Chuzom.jpg', description: 'Border formalities, acclimatization, and route planning.', highlight: 'Gateway to the Thunder Dragon' },
   { day: 2, title: 'Phuntsholing to Thimphu', location: 'Pling to Thimphu', alt: 2350, distance: '165 km', time: '5-6 hours', image: '/assets/Thimphu1.jpg', description: 'Major altitude gain through winding mountain roads to the capital.', highlight: 'Dramatic elevation climb' },
-  { day: 3, title: 'Thimphu Exploration', location: 'Thimphu', alt: 2350, distance: '30 km local', time: 'Full day', image: '/assets/Buddha_Point.jpg', description: 'Capital city sights, Buddha Dordenma statue, and Memorial Chorten.', highlight: 'Culture and heritage' },
+  { day: 3, title: 'Thimphu Exploration', location: 'Thimphu', alt: 2350, distance: '30 km local', time: 'Full day', image: '/assets/dochula1.JPG', description: 'Cross Dochula Pass with 108 chortens, Buddha Dordenma statue, and Memorial Chorten.', highlight: 'Dochula Pass & Culture' },
   { day: 4, title: 'Thimphu to Punakha', location: 'Thimphu to Punakha', alt: 1350, distance: '75 km', time: '2.5-3 hours', image: '/assets/Punakha_Dzong1.jpg', description: 'Cross Dochula Pass, descend to Punakha Valley.', highlight: 'Punakha Dzong exploration' },
   { day: 5, title: 'Punakha to Phobjikha', location: 'Punakha to Phobjikha', alt: 2900, distance: '80 km', time: '3-4 hours', image: '/assets/phobjika-valley.jpg', description: 'Pristine glacial valley in the heart of Bhutan.', highlight: 'Black-necked cranes sanctuary' },
   { day: 6, title: 'Punakha to Paro', location: 'Punakha to Paro', alt: 2200, distance: '125 km', time: '4-5 hours', image: '/assets/Paro3.jpg', description: 'Return journey through mountain passes to Paro Valley.', highlight: 'Scenic valley ride' },
-  { day: 7, title: 'Tiger Nest Hike', location: 'Paro', alt: 2200, distance: '10 km hiking', time: '5-6 hours', image: '/assets/tigernesttrial.jpg', description: 'The iconic Taktsang Goemba perched on cliff edge.', highlight: 'Sacred monastery visit' },
+  { day: 7, title: 'Tiger Nest Hike', location: 'Paro', alt: 2200, distance: '10 km hiking', time: '5-6 hours', image: '/assets/tiger-nest.jpg', description: 'The iconic Taktsang Goemba perched on cliff edge.', highlight: 'Sacred monastery visit' },
   { day: 8, title: 'Paro to Phuntsholing', location: 'Paro to Phuntsholing', alt: 293, distance: '165 km', time: '5-6 hours', image: '/assets/parobridge.jpg', description: 'Final descent back to the border. Exit formalities.', highlight: 'Farewell to the Kingdom' },
 ];
 

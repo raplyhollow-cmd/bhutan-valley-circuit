@@ -37,13 +37,13 @@ Thank you!`
   };
 
   return (
-    <section className="relative min-h-screen py-24 flex items-center bg-gradient-to-br from-bhutan-maroon via-bhutan-forest to-bhutan-indigo textile-pattern">
+    <section className="relative min-h-screen py-24 flex items-center bg-gradient-to-br from-bhutan-maroon via-bhutan-forest to-bhutan-indigo textile-pattern pb-32">
       <div className="absolute inset-0 bg-black/20" />
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           <span className="font-mono text-sm tracking-[0.3em] text-bhutan-mustard">LIMITED SPOTS - 2026 SEASON</span>
-          <h2 className="font-display mt-4 text-4xl font-bold md:text-6xl mb-6 text-white">
+          <h2 className="font-display mt-4 text-4xl font-bold md:text-6xl mb-8 text-white leading-tight px-4">
             Ready to Ride the Last Shangri-La?
           </h2>
           <p className="text-lg text-white/90 mb-12 max-w-2xl mx-auto">

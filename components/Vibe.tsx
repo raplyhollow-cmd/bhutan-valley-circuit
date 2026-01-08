@@ -26,7 +26,7 @@ export default function Vibe() {
   return (
     <section ref={containerRef} className="relative h-screen py-24 overflow-hidden bg-gradient-to-br from-bhutan-cream via-bhutan-mustard/20 to-bhutan-forest/20">
       <div className="absolute inset-0">
-        <Image src="/assets/tigernesttrial.jpg" alt="Tiger Nest" fill className="object-cover opacity-20" />
+        <Image src="/assets/tiger-nest.jpg" alt="Tiger Nest Monastery" fill className="object-cover opacity-20" />
         <div className="absolute inset-0 bg-gradient-to-r from-bhutan-cream/95 via-bhutan-cream/80 to-transparent" />
       </div>
 
