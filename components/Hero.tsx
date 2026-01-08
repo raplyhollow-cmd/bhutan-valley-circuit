@@ -1,12 +1,11 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
-  const [logoLoaded, setLogoLoaded] = useState(false);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -56,71 +55,25 @@ export default function Hero() {
 
       {/* Hero Content */}
       <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
-        {/* 3D Spinning Logo - Hollywood Style */}
-        <div className="mb-8 relative perspective-1000">
-          <div
-            className={`relative w-32 h-32 md:w-40 md:h-40 transition-all duration-1000 ${
-              logoLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
-            }`}
-            style={{
-              perspective: '1000px',
-              transformStyle: 'preserve-3d'
-            }}
-          >
-            {/* Outer glowing rings */}
-            <div className="absolute inset-0 rounded-full border-2 border-bhutan-mustard/30 animate-[spin_30s_linear_infinite]" style={{ transformStyle: 'preserve-3d' }} />
-            <div className="absolute inset-2 rounded-full border border-bhutan-maroon/20 animate-[spin_25s_linear_infinite_reverse]" style={{ transformStyle: 'preserve-3d' }} />
-            <div className="absolute inset-4 rounded-full border border-bhutan-forest/10 animate-[spin_20s_linear_infinite]" style={{ transformStyle: 'preserve-3d' }} />
-
-            {/* 3D Rotating Logo Ring */}
-            <div
-              className="absolute inset-0 flex items-center justify-center"
-              style={{
-                transformStyle: 'preserve-3d',
-                animation: 'spin3d 15s linear infinite'
-              }}
-            >
-              {/* Multiple logo layers for 3D effect */}
-              {[0, 1, 2].map((i) => (
-                <div
-                  key={i}
-                  className="absolute inset-0 w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden"
-                  style={{
-                    transform: `rotateY(${i * 60}deg) translateZ(${20 - i * 10}px)`,
-                    mixBlendMode: 'screen'
-                  }}
-                >
-                  <Image
-                    src="/assets/Bhutan silverpine logo.png"
-                    alt="Bhutan Silverpine Tours"
-                    fill
-                    className="object-contain p-4"
-                    style={{ objectFit: 'contain' }}
-                    onLoad={() => setLogoLoaded(true)}
-                  />
-                </div>
-              ))}
-            </div>
-
-            {/* Orbiting particles */}
-            <div
-              className="absolute inset-[-20px] animate-[spin_12s_linear_infinite]"
-              style={{ transformStyle: 'preserve-3d' }}
-            >
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1 w-2.5 h-2.5 rounded-full bg-bhutan-mustard shadow-lg shadow-bhutan-mustard/80" />
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1 w-2.5 h-2.5 rounded-full bg-bhutan-maroon shadow-lg shadow-bhutan-maroon/80" />
-              <div className="absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-bhutan-forest shadow-lg shadow-bhutan-forest/80" />
-              <div className="absolute right-0 top-1/2 translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-bhutan-mustard/80 shadow-lg shadow-bhutan-mustard/60" />
-            </div>
-
-            {/* Ambient glow */}
-            <div className="absolute -inset-8 rounded-full bg-bhutan-mustard/10 blur-3xl animate-pulse" style={{ animationDuration: '3s' }} />
-          </div>
+        {/* Animated Brand Name */}
+        <div className="mb-6">
+          <h2 className="font-display text-2xl md:text-3xl lg:text-4xl font-bold tracking-wider">
+            {['BHUTAN', 'SILVERPINE', 'TOURS'].map((word, i) => (
+              <span
+                key={i}
+                className="inline-block animate-[fadeInUp_0.6s_ease-out_forwards]"
+                style={{
+                  animationDelay: `${i * 0.2}s`,
+                  opacity: 0,
+                  transform: 'translateY(20px)'
+                }}
+              >
+                <span className="text-bhutan-mustard">{word}</span>{' '}
+              </span>
+            ))}
+          </h2>
+          <div className="h-px w-32 mx-auto bg-gradient-to-r from-transparent via-bhutan-maroon to-transparent animate-[widthGrow_1s_ease-out_0.8s_forwards]" style={{ width: 0 }} />
         </div>
-
-        <p className="mb-4 font-mono text-sm tracking-[0.3em] text-bhutan-mustard animate-pulse-slow">
-          BHUTAN SILVERPINE TOURS PRESENTS
-        </p>
 
         <h1
           ref={titleRef}
@@ -160,14 +113,18 @@ export default function Hero() {
       <div className="absolute top-1/4 right-10 w-20 h-20 rounded-full border border-bhutan-mustard/20 float-element" style={{ animationDelay: '0s' }} />
       <div className="absolute bottom-1/3 left-10 w-12 h-12 rounded-full border border-bhutan-maroon/20 float-element" style={{ animationDelay: '2s' }} />
 
-      {/* Add 3D spin animation to document */}
+      {/* Animations */}
       <style jsx global>{`
-        @keyframes spin3d {
-          0% { transform: rotateY(0deg) rotateX(10deg); }
-          25% { transform: rotateY(90deg) rotateX(-5deg); }
-          50% { transform: rotateY(180deg) rotateX(10deg); }
-          75% { transform: rotateY(270deg) rotateX(-5deg); }
-          100% { transform: rotateY(360deg) rotateX(10deg); }
+        @keyframes fadeInUp {
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        @keyframes widthGrow {
+          to {
+            width: 8rem;
+          }
         }
       `}</style>
     </section>

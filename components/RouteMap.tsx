@@ -7,12 +7,12 @@ export default function RouteMap() {
   const [visibleSection, setVisibleSection] = useState(0);
 
   const stops = [
-    { name: 'Phuntsholing', alt: 293, emoji: '' },
-    { name: 'Paro', alt: 2200, emoji: '' },
-    { name: 'Punakha', alt: 1350, emoji: '' },
-    { name: 'Phobjikha', alt: 2900, emoji: '' },
-    { name: 'Thimphu', alt: 2350, emoji: '' },
-    { name: 'Phuntsholing', alt: 293, emoji: '' },
+    { name: 'Phuntsholing', alt: 293 },
+    { name: 'Paro', alt: 2200 },
+    { name: 'Punakha', alt: 1350 },
+    { name: 'Phobjikha', alt: 2900 },
+    { name: 'Thimphu', alt: 2350 },
+    { name: 'Phuntsholing', alt: 293 },
   ];
 
   useEffect(() => {
@@ -31,20 +31,8 @@ export default function RouteMap() {
     const width = rect.width;
     const height = rect.height;
 
-    // Draw function
     const draw = () => {
       ctx.clearRect(0, 0, width, height);
-
-      // Draw mountain silhouette
-      ctx.fillStyle = 'rgba(45, 90, 61, 0.3)';
-      ctx.beginPath();
-      ctx.moveTo(0, height);
-      for (let x = 0; x <= width; x += 50) {
-        const mountainHeight = Math.sin(x * 0.01) * 80 + Math.sin(x * 0.02) * 40 + 100;
-        ctx.lineTo(x, height - mountainHeight);
-      }
-      ctx.lineTo(width, height);
-      ctx.fill();
 
       // Draw route line
       const progress = visibleSection / (stops.length - 1);
@@ -54,7 +42,7 @@ export default function RouteMap() {
       routeGradient.addColorStop(1, '#2D5A3D');
 
       ctx.strokeStyle = routeGradient;
-      ctx.lineWidth = 3;
+      ctx.lineWidth = 4;
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
 
@@ -62,35 +50,44 @@ export default function RouteMap() {
       ctx.beginPath();
       const points = stops.length;
       for (let i = 0; i < points; i++) {
-        const x = (width / (points - 1)) * i;
-        const y = height / 2 + Math.sin(i * 0.8) * 60;
+        const x = 80 + (width - 160) / (points - 1) * i;
+        const y = height / 2 + Math.sin(i * 0.8) * 50;
         if (i === 0) ctx.moveTo(x, y);
         else ctx.lineTo(x, y);
       }
-      
+
       ctx.stroke();
 
       // Draw stops
       stops.forEach((stop, i) => {
-        const x = (width / (stops.length - 1)) * i;
-        const y = height / 2 + Math.sin(i * 0.8) * 60;
-        
-        // Draw dot
-        ctx.beginPath();
-        ctx.arc(x, y, i <= visibleSection ? 8 : 5, 0, Math.PI * 2);
-        ctx.fillStyle = i <= visibleSection ? '#E4B01B' : 'rgba(255,255,255,0.3)';
-        ctx.fill();
+        const x = 80 + (width - 160) / (stops.length - 1) * i;
+        const y = height / 2 + Math.sin(i * 0.8) * 50;
 
-        // Draw label
-        ctx.fillStyle = i <= visibleSection ? '#ffffff' : 'rgba(255,255,255,0.5)';
-        ctx.font = '12px Space Grotesk';
+        // Draw outer circle
+        ctx.beginPath();
+        ctx.arc(x, y, 14, 0, Math.PI * 2);
+        ctx.fillStyle = i <= visibleSection ? '#E4B01B' : '#f0f0f0';
+        ctx.fill();
+        ctx.strokeStyle = i <= visibleSection ? '#C41E3A' : '#ccc';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        // Draw number
+        ctx.fillStyle = i <= visibleSection ? '#fff' : '#666';
+        ctx.font = 'bold 12px Space Grotesk';
         ctx.textAlign = 'center';
-        ctx.fillText(stop.name, x, y + 30);
-        
-        // Draw altitude
-        ctx.fillStyle = 'rgba(228, 176, 27, 0.8)';
-        ctx.font = '10px Space Grotesk';
-        ctx.fillText(stop.alt + 'm', x, y - 15);
+        ctx.textBaseline = 'middle';
+        ctx.fillText(String(i + 1), x, y);
+
+        // Draw label below
+        ctx.fillStyle = '#1a1a1a';
+        ctx.font = '11px Space Grotesk';
+        ctx.fillText(stop.name, x, y + 28);
+
+        // Draw altitude above
+        ctx.fillStyle = '#C41E3A';
+        ctx.font = 'bold 10px Space Grotesk';
+        ctx.fillText(stop.alt + 'm', x, y - 22);
       });
     };
 
@@ -99,7 +96,7 @@ export default function RouteMap() {
     const handleScroll = () => {
       const section = document.querySelector('#route-section');
       if (!section) return;
-      
+
       const rect = section.getBoundingClientRect();
       const sectionProgress = 1 - (rect.top / window.innerHeight);
       const newVisibleSection = Math.floor(sectionProgress * (stops.length - 1));
@@ -112,33 +109,33 @@ export default function RouteMap() {
   }, [visibleSection]);
 
   return (
-    <section id="route-section" className="relative min-h-screen py-24 textile-pattern">
+    <section id="route-section" className="relative min-h-screen py-24 bg-gradient-to-b from-bhutan-mustard/10 to-bhutan-cream">
       <div className="container mx-auto px-6">
         <div className="mb-16 text-center">
-          <span className="font-mono text-sm tracking-[0.3em] text-bhutan-mustard reveal">
+          <span className="font-mono text-sm tracking-[0.3em] text-bhutan-maroon">
             THE JOURNEY
           </span>
-          <h2 className="font-display mt-4 text-4xl font-bold md:text-6xl">
+          <h2 className="font-display mt-4 text-4xl font-bold md:text-6xl text-bhutan-charcoal">
             Valley Circuit Route
           </h2>
         </div>
 
-        <canvas 
-          ref={canvasRef} 
-          className="w-full h-64 md:h-80"
+        <canvas
+          ref={canvasRef}
+          className="w-full h-56 md:h-72 bg-white/50 rounded-2xl shadow-inner"
         />
 
         <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
           {stops.map((stop, i) => (
-            <div 
+            <div
               key={i}
-              className={'glass rounded-xl p-4 text-center transition-all ' + (i <= visibleSection ? 'opacity-100' : 'opacity-40')}
+              className={'bg-white/80 backdrop-blur-sm rounded-xl p-4 text-center transition-all shadow-md ' + (i <= visibleSection ? 'ring-2 ring-bhutan-mustard' : 'opacity-60')}
             >
-              <div className="font-display text-2xl font-bold text-bhutan-mustard">
+              <div className="font-display text-2xl font-bold text-bhutan-maroon">
                 {String(i + 1).padStart(2, '0')}
               </div>
-              <div className="font-mono text-sm text-gray-300">{stop.name}</div>
-              <div className="mt-2 font-mono text-xs text-bhutan-forest">
+              <div className="font-mono text-sm text-bhutan-charcoal">{stop.name}</div>
+              <div className="mt-2 font-mono text-xs text-bhutan-forest font-bold">
                 {stop.alt}m
               </div>
             </div>
@@ -146,28 +143,28 @@ export default function RouteMap() {
         </div>
 
         {/* Altitude Profile */}
-        <div className="mt-16">
-          <h3 className="font-display mb-4 text-xl font-semibold">Altitude Profile</h3>
-          <div className="relative h-32 w-full overflow-hidden rounded-xl bg-white/5">
+        <div className="mt-12">
+          <h3 className="font-display mb-4 text-xl font-semibold text-bhutan-charcoal">Altitude Profile</h3>
+          <div className="relative h-28 w-full overflow-hidden rounded-2xl bg-white/50 shadow-inner">
             <svg viewBox="0 0 600 100" className="h-full w-full">
               <defs>
-                <linearGradient id="altitudeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <linearGradient id="altitudeGradient2" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" stopColor="#C41E3A" />
                   <stop offset="50%" stopColor="#E4B01B" />
                   <stop offset="100%" stopColor="#2D5A3D" />
                 </linearGradient>
-                <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="rgba(228, 176, 27, 0.3)" />
+                <linearGradient id="areaGradient2" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="rgba(228, 176, 27, 0.4)" />
                   <stop offset="100%" stopColor="rgba(228, 176, 27, 0)" />
                 </linearGradient>
               </defs>
               <path
-                d="M0,80 L100,30 L200,50 L300,20 L400,25 L500,80 L500,100 L0,100 Z"
-                fill="url(#areaGradient)"
+                d="M0,70 L100,35 L200,50 L300,25 L400,30 L500,70 L500,100 L0,100 Z"
+                fill="url(#areaGradient2)"
               />
               <path
-                d="M0,80 L100,30 L200,50 L300,20 L400,25 L500,80"
-                stroke="url(#altitudeGradient)"
+                d="M0,70 L100,35 L200,50 L300,25 L400,30 L500,70"
+                stroke="url(#altitudeGradient2)"
                 strokeWidth="3"
                 fill="none"
                 className="animate-pulse-slow"
