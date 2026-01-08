@@ -47,7 +47,7 @@ export default function RouteMap() {
       ctx.lineJoin = 'round';
 
       // Increased padding for longer names like "Phuntsholing"
-      const padding = width < 500 ? 70 : 100;
+      const padding = width < 500 ? 85 : 130;
 
       // Draw winding road
       ctx.beginPath();
